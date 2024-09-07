@@ -42,8 +42,12 @@ def main(conf: HydraConfig) -> None:
         make_deterministic()
 
     # Check for available GPU and print result of check
-    if torch.cuda.is_available():
+
+    if have_cuda := torch.cuda.is_available():
         device_name = torch.cuda.get_device_name(torch.cuda.current_device())
+        log.info(f"Found GPU with device_name {device_name}. Will run RFdiffusion on {device_name}")
+    elif have_mps := torch.backends.mps.is_available():
+        device_name = "Metal Performance Shaders"
         log.info(f"Found GPU with device_name {device_name}. Will run RFdiffusion on {device_name}")
     else:
         log.info("////////////////////////////////////////////////")
@@ -76,9 +80,7 @@ def main(conf: HydraConfig) -> None:
         out_prefix = f"{sampler.inf_conf.output_prefix}_{i_des}"
         log.info(f"Making design {out_prefix}")
         if sampler.inf_conf.cautious and os.path.exists(out_prefix + ".pdb"):
-            log.info(
-                f"(cautious mode) Skipping this design because {out_prefix}.pdb already exists."
-            )
+            log.info(f"(cautious mode) Skipping this design because {out_prefix}.pdb already exists.")
             continue
 
         x_init, seq_init = sampler.sample_init()
@@ -147,9 +149,7 @@ def main(conf: HydraConfig) -> None:
         trb = dict(
             config=OmegaConf.to_container(sampler._conf, resolve=True),
             plddt=plddt_stack.cpu().numpy(),
-            device=torch.cuda.get_device_name(torch.cuda.current_device())
-            if torch.cuda.is_available()
-            else "CPU",
+            device=device_name if have_cuda else "MPS" if have_mps else "CPU",
             time=time.time() - start_time,
         )
         if hasattr(sampler, "contig_map"):
@@ -160,9 +160,7 @@ def main(conf: HydraConfig) -> None:
 
         if sampler.inf_conf.write_trajectory:
             # trajectory pdbs
-            traj_prefix = (
-                os.path.dirname(out_prefix) + "/traj/" + os.path.basename(out_prefix)
-            )
+            traj_prefix = os.path.dirname(out_prefix) + "/traj/" + os.path.basename(out_prefix)
             os.makedirs(os.path.dirname(traj_prefix), exist_ok=True)
 
             out = f"{traj_prefix}_Xt-1_traj.pdb"
