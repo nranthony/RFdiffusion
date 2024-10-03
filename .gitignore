@@ -17,3 +17,5 @@ tests/tests_*
 
 outputs/
 test_outputs/
+examples/example_outputs
+bit2binders_scripts/output_pdbs
