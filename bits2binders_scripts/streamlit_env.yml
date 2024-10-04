@@ -1,0 +1,19 @@
+name: streamlit
+channels: # don't forget, order important
+  # - dglteam/label/th23_cu118
+  # - pytorch
+  # - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - streamlit
+  # - stmol
+  # - py3Dmol
+  - ipywidgets
+  # - ipyspeck
+  - pip
+  - pip:
+    - stmol==0.0.9
+    - py3Dmol==2.0.0.post2
+    - ipyspeck==0.6.1
+    - ipywidgets==7.6.3

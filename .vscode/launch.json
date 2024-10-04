@@ -5,16 +5,39 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Current File",
+            "name": "InferenceScript",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
             "args": [
-                "contigmap.contigs=[150-150]",
-                "inference.output_prefix=test_outputs/test",
-                "inference.num_designs=10"
+                "scaffoldguided.target_path=input_pdbs/insulin_target.pdb",
+                "inference.output_prefix=example_outputs/design_ppi_scaffolded",
+                "scaffoldguided.scaffoldguided=True",
+                "ppi.hotspot_res=[A59,A83,A91]",
+                "scaffoldguided.target_pdb=True",
+                "scaffoldguided.target_ss=target_folds/insulin_target_ss.pt",
+                "scaffoldguided.target_adj=target_folds/insulin_target_adj.pt",
+                "scaffoldguided.scaffold_dir=./ppi_scaffolds/",
+                "inference.num_designs=10",
+                "denoiser.noise_scale_ca=0",
+                "denoiser.noise_scale_frame=0"
             ]
+        },
+        {
+            "name": "Python: Streamlit",
+            "type": "python",
+            "request": "launch",
+            "module": "streamlit",
+            "args": [
+                "run",
+                "${workspaceFolder}/bits2binders_scripts/st_pdb_viewer.py"
+            ],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "console": "integratedTerminal"
         }
     ]
 }
