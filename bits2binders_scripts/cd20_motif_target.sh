@@ -43,6 +43,25 @@ hsb_06 (colab)
 
 A161,A174,A178,B77,B144,B148,B156,B161,B166,B168,B174
 
+hsb_07
+A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170
+../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20ecm_hsb_07 inference.num_designs=32 inference.input_pdb=input_pdbs/cd20ecm.pdb diffuser.T=50 ppi.hotspot_res='[A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170]' 'contigmap.contigs=[A143-186/0 A73-78/0 B143-186/0 B73-78/0 40-80]' inference.ckpt_override_path=../models/Complex_beta_ckpt.pt
+
+hs_08
+A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170
+../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20ecm_hs_08 inference.num_designs=32 inference.input_pdb=input_pdbs/cd20ecm.pdb diffuser.T=50 ppi.hotspot_res='[A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170]' 'contigmap.contigs=[A143-186/0 A73-78/0 B143-186/0 B73-78/0 21-42]'
+
+hs_09
+A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170
+../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20ecm_hs_09 inference.num_designs=32 inference.input_pdb=input_pdbs/cd20ecm.pdb diffuser.T=100 ppi.hotspot_res='[A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170]' 'contigmap.contigs=[A143-186/0 A73-78/0 B143-186/0 B73-78/0 36-42]'
+
+hs_09
+A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170
+../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20ecm_hs_09 inference.num_designs=32 inference.input_pdb=input_pdbs/cd20ecm.pdb diffuser.T=100 ppi.hotspot_res='[A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170]' 'contigmap.contigs=[A143-186/0 A73-78/0 B143-186/0 B73-78/0 36-42]'
+
+hsb_10
+A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170
+../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20ecm_hsb_10 inference.num_designs=32 inference.input_pdb=input_pdbs/cd20ecm.pdb diffuser.T=42 ppi.hotspot_res='[A175,A176,B76,B77,B144,B145,B148,B150,B153,B156,B157,B160,B161,B163,B166,B170]' 'contigmap.contigs=[A143-186/0 A73-78/0 B143-186/0 B73-78/0 22-36]' inference.ckpt_override_path=../models/Complex_beta_ckpt.pt
 
 python ../scripts/run_inference.py inference.output_prefix=output_pdbs/cd20_binder inference.input_pdb=input_pdbs/cd20.pdb 'contigmap.contigs=[A45-213/0 B45-213/0 60-80]' inference.num_designs=4
 
